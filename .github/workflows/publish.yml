@@ -36,4 +36,4 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ github.token }}
 
-      - run: 'curl -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ github.token }}" "https://npm.pkg.github.com/@${{ github.repository }}"'
+      - run: 'curl -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ github.token }}" "https://npm.pkg.github.com/@${{ github.repository }}" | jq'
