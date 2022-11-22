@@ -2,6 +2,7 @@ on: [push, workflow_dispatch]
 
 env:
   VERSION: "1.0.${{ github.run_number }}"
+  TAG: dev
 
 jobs:
   publish:
@@ -32,13 +33,13 @@ jobs:
         run: npm pack
 
       - name: Publish the package
-        run: npm publish --tag dev
+        run: npm publish --tag ${{ env.TAG }}
         env:
           NODE_AUTH_TOKEN: ${{ github.token }}
           
       - run: rm package.json
       
-      - run: npm i @${{ github.repository }}@dev
+      - run: npm i @${{ github.repository }}@${{ env.TAG }}
         env:
           NODE_AUTH_TOKEN: ${{ github.token }}
 
