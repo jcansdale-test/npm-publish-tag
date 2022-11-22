@@ -35,5 +35,11 @@ jobs:
         run: npm publish --tag dev
         env:
           NODE_AUTH_TOKEN: ${{ github.token }}
+          
+      - run: rm package.json
+      
+      - run: npm i @${{ github.repository }}
+        env:
+          NODE_AUTH_TOKEN: ${{ github.token }}
 
       - run: 'curl -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ github.token }}" "https://npm.pkg.github.com/@${{ github.repository }}" | jq'
