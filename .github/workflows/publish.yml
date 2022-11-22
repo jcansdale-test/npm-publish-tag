@@ -38,7 +38,7 @@ jobs:
           
       - run: rm package.json
       
-      - run: npm i @${{ github.repository }}
+      - run: npm i @${{ github.repository }}@dev
         env:
           NODE_AUTH_TOKEN: ${{ github.token }}
 
